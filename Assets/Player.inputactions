@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "Player",
+    "maps": [
+        {
+            "name": "Ball",
+            "id": "af04a0a1-c924-4002-b8ac-84ac32be18ce",
+            "actions": [
+                {
+                    "name": "Right",
+                    "type": "Value",
+                    "id": "562bc39f-aa00-4d5f-a00e-1e4e980e52e7",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "02d4563c-6e91-4d81-a7a3-6b23c0e0cad4",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

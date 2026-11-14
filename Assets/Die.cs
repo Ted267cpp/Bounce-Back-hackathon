@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.Timeline;
 public class Die : MonoBehaviour
 {
     // x<-9.1 x>9.6
     public Transform transform;
-    OnTriggerEnter2D enter2D;
+    public AudioSource audioSource;
+
     void Start()
     {
         
@@ -17,11 +19,16 @@ public class Die : MonoBehaviour
     {
         if(transform.position.x<-9.1f || transform.position.x>9.6f || transform.position.y<-5.6)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            reseter();
         }
     }
     void OnTriggerEnter2D(Collider2D collision) 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        reseter();
+    }
+    void reseter() 
+    {
+        audioSource.Play();
+        ///SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

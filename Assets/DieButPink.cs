@@ -10,11 +10,9 @@ public class DieButPink : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(IsTouched)
-        {
-            Destroy(gameObject);
-        }   
+        IsTouched = true;
+        Destroy(gameObject);
     }
 }

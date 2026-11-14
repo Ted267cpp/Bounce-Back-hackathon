@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class winCondition : MonoBehaviour
 {
     public Transform transformWiner;
@@ -15,14 +15,9 @@ public class winCondition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transformWiner.position.x>=5.7 && transformWiner.position.y>=1.2)//5.7 1.2
+        if (transformWiner.position.x <= -4.3 && transformWiner.position.y <= -1.9 && dieButPink.IsTouched == true)//4.3 1.9
         {
-            firstWinCondition = true;
-            dieButPink.IsTouched = true;
-        }
-        if (transform.position.x <= -4.3 && transform.position.y <= -1.9 && firstWinCondition == true)//4.3 1.9
-        {
-            secondWinCondition = true;
+            SceneManager.LoadScene("Level 2");
         }
     }
 }

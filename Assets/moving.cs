@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 public class moving : MonoBehaviour {
     public Rigidbody2D rb;
     private bool isRightPressed;
     private bool isLeftPressed;
+    private bool isSuicde;
     private Player _controls; // player e un input system
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class moving : MonoBehaviour {
     {
         isRightPressed = _controls.Ball.Right.ReadValue<float>() > 0;
         isLeftPressed = _controls.Ball.Left.ReadValue<float>() > 0;
+        isSuicde = _controls.Ball.Suicide.ReadValue<float>() > 0;
     }
     private void FixedUpdate()
     {
@@ -29,6 +31,10 @@ public class moving : MonoBehaviour {
         if (isLeftPressed)
         {
             rb.AddForce(Vector2.left * 0.1f, ForceMode2D.Impulse);
+        }
+        if (isSuicde) 
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
     }
     private void OnEnable()

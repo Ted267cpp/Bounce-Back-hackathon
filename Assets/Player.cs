@@ -109,6 +109,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Suicide"",
+                    ""type"": ""Value"",
+                    ""id"": ""08d81b25-c13f-4887-9992-b01051179bf4"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -133,6 +142,17 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0321f280-9cb1-4e10-a582-e2ea027a6539"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Suicide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Ball = asset.FindActionMap("Ball", throwIfNotFound: true);
         m_Ball_Right = m_Ball.FindAction("Right", throwIfNotFound: true);
         m_Ball_Left = m_Ball.FindAction("Left", throwIfNotFound: true);
+        m_Ball_Suicide = m_Ball.FindAction("Suicide", throwIfNotFound: true);
     }
 
     ~@Player()
@@ -225,6 +246,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private List<IBallActions> m_BallActionsCallbackInterfaces = new List<IBallActions>();
     private readonly InputAction m_Ball_Right;
     private readonly InputAction m_Ball_Left;
+    private readonly InputAction m_Ball_Suicide;
     /// <summary>
     /// Provides access to input actions defined in input action map "Ball".
     /// </summary>
@@ -244,6 +266,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Ball/Left".
         /// </summary>
         public InputAction @Left => m_Wrapper.m_Ball_Left;
+        /// <summary>
+        /// Provides access to the underlying input action "Ball/Suicide".
+        /// </summary>
+        public InputAction @Suicide => m_Wrapper.m_Ball_Suicide;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -276,6 +302,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Left.started += instance.OnLeft;
             @Left.performed += instance.OnLeft;
             @Left.canceled += instance.OnLeft;
+            @Suicide.started += instance.OnSuicide;
+            @Suicide.performed += instance.OnSuicide;
+            @Suicide.canceled += instance.OnSuicide;
         }
 
         /// <summary>
@@ -293,6 +322,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Left.started -= instance.OnLeft;
             @Left.performed -= instance.OnLeft;
             @Left.canceled -= instance.OnLeft;
+            @Suicide.started -= instance.OnSuicide;
+            @Suicide.performed -= instance.OnSuicide;
+            @Suicide.canceled -= instance.OnSuicide;
         }
 
         /// <summary>
@@ -347,5 +379,12 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Suicide" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSuicide(InputAction.CallbackContext context);
     }
 }

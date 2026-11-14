@@ -29,6 +29,6 @@ public class Die : MonoBehaviour
     void reseter() 
     {
         audioSource.Play();
-        ///SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

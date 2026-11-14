@@ -100,6 +100,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""66773228-b16e-4d04-911b-072192fbed3d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -113,6 +122,17 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09faae74-6c40-4364-8904-e6fdb7225b10"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         // Ball
         m_Ball = asset.FindActionMap("Ball", throwIfNotFound: true);
         m_Ball_Right = m_Ball.FindAction("Right", throwIfNotFound: true);
+        m_Ball_Left = m_Ball.FindAction("Left", throwIfNotFound: true);
     }
 
     ~@Player()
@@ -203,6 +224,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Ball;
     private List<IBallActions> m_BallActionsCallbackInterfaces = new List<IBallActions>();
     private readonly InputAction m_Ball_Right;
+    private readonly InputAction m_Ball_Left;
     /// <summary>
     /// Provides access to input actions defined in input action map "Ball".
     /// </summary>
@@ -218,6 +240,10 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Ball/Right".
         /// </summary>
         public InputAction @Right => m_Wrapper.m_Ball_Right;
+        /// <summary>
+        /// Provides access to the underlying input action "Ball/Left".
+        /// </summary>
+        public InputAction @Left => m_Wrapper.m_Ball_Left;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -247,6 +273,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Right.started += instance.OnRight;
             @Right.performed += instance.OnRight;
             @Right.canceled += instance.OnRight;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
         }
 
         /// <summary>
@@ -261,6 +290,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Right.started -= instance.OnRight;
             @Right.performed -= instance.OnRight;
             @Right.canceled -= instance.OnRight;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
         }
 
         /// <summary>
@@ -308,5 +340,12 @@ public partial class @Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeft(InputAction.CallbackContext context);
     }
 }

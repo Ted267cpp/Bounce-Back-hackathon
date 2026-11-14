@@ -10,17 +10,33 @@ public class moving : MonoBehaviour {
     public Rigidbody2D rb;
     private bool isRightPressed;
     private bool isLeftPressed;
-    private Player _controls;
+    private Player _controls; // player e un input system
     private void Awake()
     {
         _controls = new Player();
     }
-    public void OnRight() 
+    private void Update()
     {
-        rb.AddForce(Vector2.right * 1f, ForceMode2D.Impulse);
+        isRightPressed = _controls.Ball.Right.ReadValue<float>() > 0;
+        isLeftPressed = _controls.Ball.Left.ReadValue<float>() > 0;
     }
-    public void OnLeft()
+    private void FixedUpdate()
     {
-        rb.AddForce(Vector2.left * 1f, ForceMode2D.Impulse);
+        if (isRightPressed)
+        {
+            rb.AddForce(Vector2.right * 0.1f, ForceMode2D.Impulse);
+        }
+        if (isLeftPressed)
+        {
+            rb.AddForce(Vector2.left * 0.1f, ForceMode2D.Impulse);
+        }
+    }
+    private void OnEnable()
+    {
+        _controls.Enable();
+    }
+    private void OnDisable()
+    {
+        _controls.Disable();    
     }
 }

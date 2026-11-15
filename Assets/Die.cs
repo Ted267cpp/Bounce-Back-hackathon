@@ -7,11 +7,10 @@ public class Die : MonoBehaviour
 {
     // x<-9.1 x>9.6
     public Transform transform;
-    public AudioSource audioSource;
 
     void Start()
     {
-        
+        transform = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -28,7 +27,6 @@ public class Die : MonoBehaviour
     }
     void reseter() 
     {
-        audioSource.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

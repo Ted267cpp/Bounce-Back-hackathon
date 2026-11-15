@@ -1,10 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class moving : MonoBehaviour {
     public Rigidbody2D rb;

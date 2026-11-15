@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class winCondition : MonoBehaviour
 {
-    public Transform transformWiner;
-    private bool firstWinCondition = false;    
+    public Transform transformWiner;    
     DieButPink dieButPink;
     private void Start()
     {
